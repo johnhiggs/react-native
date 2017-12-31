@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import NewMessageForm from './NewMessageForm';
+import MessageList from './MessageList';
 
 export default class App extends Component {
   state = { messages: [] }
@@ -19,9 +20,11 @@ export default class App extends Component {
   }
 
   render() {
+    const { messages } = this.state;
     return (
       <View>
         <NewMessageForm onSave={newMessage => this.handleSave(newMessage)} />
+        <MessageList data={messages} />
       </View>
     );
   }
