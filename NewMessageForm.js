@@ -13,6 +13,11 @@ export default class NewMessageForm extends Component {
   }
 
   handleSave() {
+    const { inputText } = this.state;
+    const { onSave } = this.props;
+
+    onSave(inputText);
+
     this.setState({ inputText: '' });
   }
 
