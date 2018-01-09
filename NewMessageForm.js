@@ -12,6 +12,10 @@ export default class NewMessageForm extends Component {
     this.setState({ inputText: text });
   }
 
+  handleSave() {
+    this.setState({ inputText: '' });
+  }
+
   render() {
     const { inputText } = this.state;
     return (
@@ -24,6 +28,7 @@ export default class NewMessageForm extends Component {
         <Button
           title="Save"
           testID="saveButton"
+          onPress={() => this.handleSave()}
         />
       </View>
     );
