@@ -11,10 +11,12 @@ describe('NewMessageForm', () => {
   describe('clicking save', () => {
     const messageText = 'Hello world';
 
+    let saveHandler;
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<NewMessageForm />);
+      saveHandler = jest.fn().mockName('saveHandler');
+      wrapper = shallow(<NewMessageForm onSave={saveHandler} />);
 
       wrapper.findWhere(testID('messageText'))
         .simulate('changeText', messageText);
@@ -25,6 +27,10 @@ describe('NewMessageForm', () => {
     it('clears the message field', () => {
       expect(wrapper.findWhere(testID('messageText')).props().value)
         .toEqual('');
+    });
+
+    it('calls the save handler', () => {
+      expect(saveHandler).toHaveBeenCalledWith(messageText);
     });
   });
 });
