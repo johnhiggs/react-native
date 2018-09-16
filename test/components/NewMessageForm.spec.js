@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import React from 'react';
 import { shallow } from 'enzyme';
+import { stub } from 'sinon';
 
 import NewMessageForm from '../../NewMessageForm';
 
@@ -12,10 +13,12 @@ describe('NewMessageForm', () => {
   describe('clicking send', () => {
     const messageText = 'Hello world';
 
+    let sendHandler;
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<NewMessageForm />);
+      sendHandler = stub();
+      wrapper = shallow(<NewMessageForm onSend={sendHandler} />);
 
       wrapper.findWhere(testID('messageText'))
         .simulate('changeText', messageText);
@@ -26,6 +29,10 @@ describe('NewMessageForm', () => {
     it('clears the message field', () => {
       expect(wrapper.findWhere(testID('messageText')).props().value)
         .to.equal('');
+    });
+
+    it('calls the send handler', () => {
+      expect(sendHandler).to.have.been.calledWith(messageText);
     });
   });
 });
