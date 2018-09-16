@@ -5,10 +5,13 @@ import {
 import NewMessageForm from './NewMessageForm';
 
 export default class App extends Component {
+  handleSend = (newMessage) => {
+  }
+
   render() {
     return (
       <View>
-        <NewMessageForm />
+        <NewMessageForm onSend={this.handleSend} />
       </View>
     );
   }
