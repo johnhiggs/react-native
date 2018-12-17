@@ -11,18 +11,12 @@ module.exports = {
   parser: 'babel-eslint',
   plugins: [
     'detox',
+    'jest',
   ],
   env: {
     'detox/detox': true,
+    'jest/globals': true,
     node: true,
-  },
-  globals: {
-    after: true,
-    afterEach: true,
-    before: true,
-    beforeEach: true,
-    describe: true,
-    it: true,
   },
   rules: {
     'react/prop-types': 'off',

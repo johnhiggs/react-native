@@ -5,7 +5,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "lint": "eslint *.js test/**/*.js e2e/*.spec.js",
-    "test": "mocha",
+    "test": "node_modules/.bin/jest test/**/*.spec.js",
     "eject": "expo eject"
   },
   "dependencies": {
@@ -26,9 +26,11 @@
     "eslint-config-codingitwrong": "^0.1.4",
     "eslint-plugin-detox": "^1.0.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.1.2",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "expo-detox-hook": "^1.0.10",
+    "jest-expo": "^31.0.0",
     "mocha": "^5.2.0",
     "sinon": "^7.2.2",
     "sinon-chai": "^3.3.0"
@@ -43,5 +45,8 @@
         "name": "iPhone 7"
       }
     }
+  },
+  "jest": {
+    "preset": "jest-expo"
   }
 }
