@@ -32,6 +32,8 @@
     "expo-detox-hook": "^1.0.10",
     "jest-expo": "^31.0.0",
     "mocha": "^5.2.0",
+    "react-native-testing-library": "^1.4.2",
+    "react-test-renderer": "^16.6.3",
     "sinon": "^7.2.2",
     "sinon-chai": "^3.3.0"
   },
