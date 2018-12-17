@@ -1,38 +1,30 @@
-import { expect } from 'chai';
 import React from 'react';
-import { shallow } from 'enzyme';
-import { stub } from 'sinon';
+import { render, fireEvent } from 'react-native-testing-library';
 
 import NewMessageForm from '../../NewMessageForm';
 
 describe('NewMessageForm', () => {
-  function testID(id) {
-    return cmp => cmp.props().testID === id;
-  }
-
   describe('clicking send', () => {
     const messageText = 'Hello world';
 
     let sendHandler;
-    let wrapper;
+    let getByTestId;
 
     beforeEach(() => {
-      sendHandler = stub();
-      wrapper = shallow(<NewMessageForm onSend={sendHandler} />);
+      sendHandler = jest.fn();
+      ({ getByTestId } = render(<NewMessageForm onSend={sendHandler} />));
 
-      wrapper.findWhere(testID('messageText'))
-        .simulate('changeText', messageText);
-      wrapper.findWhere(testID('sendButton'))
-        .simulate('press');
+      fireEvent.changeText(getByTestId('messageText'), messageText);
+      fireEvent.press(getByTestId('sendButton'));
     });
 
     it('clears the message field', () => {
-      expect(wrapper.findWhere(testID('messageText')).props().value)
-        .to.equal('');
+      expect(getByTestId('messageText').props.value)
+        .toEqual('');
     });
 
     it('calls the send handler', () => {
-      expect(sendHandler).to.have.been.calledWith(messageText);
+      expect(sendHandler).toHaveBeenCalledWith(messageText);
     });
   });
 });
