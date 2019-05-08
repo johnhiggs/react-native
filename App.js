@@ -5,7 +5,10 @@ import {
 import NewMessageForm from './NewMessageForm';
 
 export default class App extends Component {
+  state = { messages: [] }
+
   handleSend = (newMessage) => {
+    this.setState(state => ({ messages: [newMessage, ...state.messages] }));
   }
 
   render() {
